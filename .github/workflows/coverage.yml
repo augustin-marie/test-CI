@@ -1,0 +1,21 @@
+name: coverage-code
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name : Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Python  ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+
+      - name: code-coverage
+        run : |
+          pip install coverage
+          pip install pytest coverage
+          coverage run -m pytest

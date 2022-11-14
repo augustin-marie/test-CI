@@ -1,0 +1,21 @@
+name: Bandit
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name : Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Python  ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+
+      - name: Install bandit
+        run: pip install bandit
+
+      - name: Run bandit
+        run: python3 -m bandit .
